@@ -36,8 +36,8 @@ export default function LoginPage() {
     setValue('email', 'admin@gmail.com');
     setValue('password', '12341234');
 
-    // Submit the form after setting credentials
-    handleSubmit(submit)();
+    // Pop an alert box with admin credentials
+    window.alert("To access the Admin Panel, enter:\nEmail: admin@gmail.com\nPassword: 12341234");
   };
 
   return (
