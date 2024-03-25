@@ -48,7 +48,7 @@ This project is a MERN (MongoDB, Express.js, React.js, Node.js) based web applic
 
 - Visual Studio Code
 - Git
-- Render
+- Render (Frontend and Backend deployed together)
 - MongoDB Atlas
 - Cloudinary
 - Mailgun
