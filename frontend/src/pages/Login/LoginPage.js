@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
@@ -7,11 +7,13 @@ import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { EMAIL } from '../../constants/patterns';
+
 export default function LoginPage() {
   const {
     handleSubmit,
     register,
     formState: { errors },
+    setValue, // Add setValue from useForm to set input values
   } = useForm();
 
   const navigate = useNavigate();
@@ -23,10 +25,19 @@ export default function LoginPage() {
     if (!user) return;
 
     returnUrl ? navigate(returnUrl) : navigate('/');
-  }, [user]);
+  }, [user, navigate, returnUrl]);
 
   const submit = async ({ email, password }) => {
     await login(email, password);
+  };
+
+  const handleAdminDemo = () => {
+    // Set admin credentials when admin demo button is clicked
+    setValue('email', 'admin@gmail.com');
+    setValue('password', '12341234');
+
+    // Submit the form after setting credentials
+    handleSubmit(submit)();
   };
 
   return (
@@ -54,6 +65,8 @@ export default function LoginPage() {
           />
 
           <Button type="submit" text="Login" />
+
+          <Button type="button" text="Admin Demo" onClick={handleAdminDemo} />
 
           <div className={classes.register}>
             New user? &nbsp;
